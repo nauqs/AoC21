@@ -71,5 +71,5 @@ if __name__ == "__main__":
     data = get_input(day)
     lines = get_lines(data)
     print(part1(lines))
-    print(part2(data))
+    print(part2(lines))
 
