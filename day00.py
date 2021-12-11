@@ -11,6 +11,6 @@ if __name__ == "__main__":
     day = 0
     #data = get_input(day)
     data = 0
-    print(part1(data))
-    print(part2(data))
+    print(part1(data.copy()))
+    print(part2(data.copy()))
 
