@@ -21,7 +21,7 @@ def part2(points, folds):
     for axis, val in folds:
         fold_paper = fold(fold_paper, axis, int(val))
     
-    result = np.where(fold_paper<1,'.','#')
+    result = np.where(fold_paper<1,' ','#')
     string_result = ""
     for line in result.transpose():
         string_result += "".join([str(x) for x in line])+"\n"
