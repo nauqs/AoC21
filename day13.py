@@ -8,7 +8,8 @@ def part1(points, folds):
         paper[x, y] = 1
     fold_paper = paper.copy()
     for axis, val in folds:
-        fold_paper = np.clip(fold(fold_paper, axis, int(val)), 0, 1)
+        fold_paper = fold(fold_paper, axis, int(val))
+        break
     return int(np.sum(fold_paper))
 
 def part2(points, folds):
@@ -18,7 +19,7 @@ def part2(points, folds):
         paper[x, y] = 1
     fold_paper = paper.copy()
     for axis, val in folds:
-        fold_paper = np.clip(fold(fold_paper, axis, int(val)), 0, 1)
+        fold_paper = fold(fold_paper, axis, int(val))
     
     result = np.where(fold_paper<1,'.','#')
     string_result = ""
@@ -33,7 +34,7 @@ def fold(paper, axis, position):
     if axis == 'y':
         fold_1 = paper[:,:position]
         fold_2 = np.fliplr(paper[:,position+1:])
-    return fold_1+fold_2
+    return np.clip(fold_1+fold_2, 0, 1)
 
 if __name__ == "__main__":
     day = 13
