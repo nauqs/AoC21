@@ -7,7 +7,7 @@ def part1(x_min, x_max, y_min, y_max):
     """
     h_max = 0
     for x_vel in range(x_max+1):
-        for y_vel in range(150):
+        for y_vel in range(2*abs(y_max)):
             res = shoot(x_vel, y_vel, x_min, x_max, y_min, y_max)
             if res:
                 h_max = max(h_max, res)    
@@ -19,7 +19,7 @@ def part2(x_min, x_max, y_min, y_max):
     """
     s = 0
     for x_vel in range(x_max+1):
-        for y_vel in range(y_min,150):
+        for y_vel in range(y_min,2*abs(y_max)):
             res = shoot(x_vel, y_vel, x_min, x_max, y_min, y_max)
             if res:
                 s+=1    
