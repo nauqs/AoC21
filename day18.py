@@ -5,10 +5,14 @@ def part1(data):
     for sfnum in data[1:]:
         sfsum = add(sfsum, sfnum)
         sfsum = reduce(sfsum)
-    return magnitude(sfsum)
+    return magnitude(eval(sfsum))
 
 def part2(data):
-    return 0
+    m = 0
+    for num1 in data:
+        for num2 in data:
+            m = max(part1([num1,num2]),m)
+    return m
 
 def add(exp_a, exp_b):
     return '[' + exp_a + ',' + exp_b + ']'
@@ -91,35 +95,14 @@ def split(expression, idx, k):
     b = num_to_split // 2 + num_to_split % 2
     return expression[:idx] + "[" + str(a) + "," + str(b) + "]" + expression[idx+k:]
 
-def magnitude(data):
-    return data
+def magnitude(expression):
+    if isinstance(expression, int):
+        return expression
+    return 3*magnitude(expression[0])+2*magnitude(expression[1])
 
 if __name__ == "__main__":
     day = 18
     data = get_input(day)
-    data = """[1,2]
-[[1,2],3]
-[9,[8,7]]
-[[1,9],[8,5]]""".splitlines()
-    data = """[1,1]
-[2,2]
-[3,3]
-[4,4]
-[5,5]
-[6,6]
-""".splitlines()
-    data="""[[[0,[4,5]],[0,0]],[[[4,5],[2,6]],[9,5]]]
-[7,[[[3,7],[4,3]],[[6,3],[8,8]]]]
-[[2,[[0,8],[3,4]]],[[[6,7],1],[7,[1,6]]]]
-[[[[2,4],7],[6,[0,5]]],[[[6,8],[2,8]],[[2,1],[4,5]]]]
-[7,[5,[[3,8],[1,4]]]]
-[[2,[2,2]],[8,[8,1]]]
-[2,9]
-[1,[[[9,3],9],[[9,0],[0,7]]]]
-[[[5,[7,4]],7],1]
-[[[[4,2],2],6],[8,7]]""".splitlines()
-    data = get_input(day)
-
     print(part1(data))
     print(part2(data))
 
