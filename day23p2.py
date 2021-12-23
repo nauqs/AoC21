@@ -29,6 +29,7 @@ def part2(data):
 
     energy = 0
     ordered = False
+    step_energy = 0
 
     while not ordered:
 
@@ -38,12 +39,18 @@ def part2(data):
         string = string.upper()
 
         # Special inputs and check format
-        if string == "restart": return -1
-        if string == "instructions":
+        if string == "RESTART": return -1
+        if string == "INSTRUCTIONS":
             print(instructions)
+            continue
+        if string == "BACK":
+            room_map = copy.deepcopy(prev_map)
+            energy -= step_energy
             continue
         if not correct_format(string):
             continue
+
+        prev_map = copy.deepcopy(room_map)
 
         # If input correct, perform moves
         origin, dest = string.split(' ')
