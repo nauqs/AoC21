@@ -72,7 +72,12 @@ def part1(data):
             room_map[o_row][o_col] = '.'
             room_map[row][col] = amphimod
 
-        step_energy = (abs(row-o_row) + abs(col-o_col)) * (10 ** correct[amphimod])
+        if o_row == 1 or row == 1:
+            distance = abs(row-o_row) + abs(col-o_col)
+        else:
+            distance = abs(row-1) + abs(o_row-1) + abs(col-o_col)
+
+        step_energy = distance  * (10 ** correct[amphimod])
 
         energy += step_energy
         print("Current energy:", energy)
@@ -90,9 +95,6 @@ def correct_format(string):
         origin, dest = string.split(' ')
     except:
         print("Two positions expected' (e.g. 'A1 H1')")
-        return False
-    if not (origin[0]=='H' or dest[0]=='H'):
-        print("Origin or destination must be hallway")
         return False
     if not (len(origin)==2 and len(dest)==2):
         print("The format must be  '~origin~ ~destination~' (e.g. 'A1 H1')")
